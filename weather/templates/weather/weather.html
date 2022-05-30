@@ -80,13 +80,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather Finder</title>
 </head>
 
 <body>
  <div class="content">
   <div>
-    <div > <center> <p><h1>Weather Finder</h1></p></center></div>
+    <div style="color:blue"> <center> <p><h1>Weather Finder</h1></p></center></div>
       <form action="/weather/search" method="POST" class="modern-form">
         {% csrf_token %} <!-- To handle the Cross Site Request Forgery issue -->
         <!-- <label for="title">Movie Title: </label> -->
@@ -99,9 +99,9 @@
 
   {% if weather %}
   {% if weather.cod == '404'%}
-  <div><p><h3>Please double check your input value </h3></p> <p>The city '{{input}}' was not found</p></div> <!-- {{weather.message}}-->
+  <div><p><h3 style="color:red">Please double check your input value </h3></p> <p>The city '{{input}}' was not found</p></div> <!-- {{weather.message}}-->
   {% else %}
-  <div > <p><h3>The Weather Condition in {{weather.name}}</h3></p></div>
+  <div > <p><h3 style="color:black">The Weather Condition in {{weather.name}}</h3></p></div>
     
   <div>
     <ul>

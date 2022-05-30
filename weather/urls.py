@@ -17,9 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from weather import views
 
+handler404 = 'weather.views.custom_page_not_found_view'
+handler500 = 'weather.views.custom_error_view'
+handler403 = 'weather.views.custom_permission_denied_view'
+handler400 = 'weather.views.custom_bad_request_view'
+
 urlpatterns = [
     path('', views.home),
+    path('home/', views.home),
     path('admin/', admin.site.urls),
     path('weather/search', views.search), 
     path('weather/', views.weather)
+    
 ]
