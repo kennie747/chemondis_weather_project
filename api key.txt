@@ -1,9 +1,0 @@
-API Key Name: CheMondis
-API Key: b27e3ddf0e0310f3e3597455aca169c1
-
-API Key Name: Default
-API Key	 5a008aceca448cf6719f172c9ecdeeff
-
-
-sample call:
-api.openweathermap.org/data/2.5/weather?q=london,uk&APPID=5a008aceca448cf6719f172c9ecdeeff
