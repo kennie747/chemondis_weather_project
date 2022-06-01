@@ -1,0 +1,77 @@
+
+
+
+{% load i18n %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <div id="google_element"></div>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+
+    <script>
+        function loadGoogleTranslate(){
+            new google.translate.TranslateElement("google_element");
+
+        }
+    </script>
+    <script type="text/javascritp">
+        
+    </script> -->
+    <style>
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .combo{
+            padding:10px;
+            width: 100%;
+            padding: 5px 5px 8px 0px;
+            margin: 0 0 5px -5px;
+            font-size: 18px;
+        }
+        .modern-form {
+            width: 500px;
+            margin: 30px auto;
+            background-color:  #fff;
+            border: solid 1px #ccc;
+            padding: 20px 10px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Finder</title>
+</head>
+
+<body>
+ <div class="content">
+  <div>
+    <div style="color:blue"> <center> <p><h2>{% trans 'Configure Caching' %}</h2></p></center></div>
+    <form action= "/config/save_config" method="POST" class="modern-form">
+        {% csrf_token %} <!-- To handle the Cross Site Request Forgery issue -->
+        
+        <label for="cache_duration">{% trans 'Caching Duration:' %}</label>
+        <select id="cache_duration" name="cache_duration" class="combo">
+            <option value=300 >{% trans 'Select an Option' %}</option>
+            <option value=300>5 {% trans 'minutes' %}</option>
+            <option value=600 >10 {% trans 'minutes' %}</option>
+            <option value=3600>60 {% trans 'minutes' %}</option>
+        </select>
+        <center><input type="submit" value = '{% trans 'Set Cache Timeout'  %}' class="wrap"></center>
+      </form>
+      {% trans 'Cache Timeout is set to: ' %} {{set_val}} {% trans 'minutes' %}
+  </div>
+  <br>
+  <br>
+  <a href='/home'>{% trans 'Home page' %}</a>
+ </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-01 00:27+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\weather\templates\weather\config.html:57
+msgid "Configure Caching"
+msgstr "Konfigurieren der Zwischenspeicherung"
+
+#: .\weather\templates\weather\config.html:61
+msgid "Caching Duration:"
+msgstr "Dauer der Zwischenspeicherung:"
+
+#: .\weather\templates\weather\config.html:63
+msgid "Select an Option"
+msgstr "Wählen Sie eine Option aus"
+
+#: .\weather\templates\weather\config.html:64
+#: .\weather\templates\weather\config.html:65
+#: .\weather\templates\weather\config.html:66
+#: .\weather\templates\weather\config.html:70
+
+#| msgid "5 minutes"
+msgid "minutes"
+msgstr "Minuten"
+
+#: .\weather\templates\weather\config.html:68
+msgid "Set Cache Timeout"
+msgstr "Cache-Timeout festlegen"
+
+#: .\weather\templates\weather\config.html:70
+msgid "Cache Timeout is set to: "
+msgstr "Das Cache-Timeout ist wie folgt festgelegt: "
+
+#: .\weather\templates\weather\config.html:74
+msgid "Home page"
+msgstr "Startseite"
+
+#: .\weather\templates\weather\weather.html:14
+msgid "Go"
+msgstr "Gehen"
+
+#: .\weather\templates\weather\weather.html:17
+msgid "Hi Guest, you're welcome to our site"
+msgstr "Hallo Gast, herzlich willkommen auf unserer Seite"
+
+#: .\weather\templates\weather\weather.html:18
+msgid "Please enjoy the rest of your day"
+msgstr "Bitte genießen Sie den Rest Ihres Tages"
+
+#: .\weather\templates\weather\weather.html:60
+msgid "Weather Finder"
+msgstr "Wetterfinder"
+
+#: .\weather\templates\weather\weather.html:63
+msgid "Please Enter a City to Get the Weather Condition"
+msgstr "Bitte geben Sie eine Stadt ein, um die Wetterbedingungen zu erhalten"
+
+#: .\weather\templates\weather\weather.html:65
+msgid "Search Weather"
+msgstr "Wetter suchen"
+
+#: .\weather\templates\weather\weather.html:78
+msgid "Please double check your input value"
+msgstr "Bitte überprüfen Sie Ihren Eingabewert"
+
+#: .\weather\templates\weather\weather.html:78
+msgid "The city"
+msgstr "Die Stadt"
+
+#: .\weather\templates\weather\weather.html:78
+msgid "was not found"
+msgstr "wurde nicht gefunden"
+
+#: .\weather\templates\weather\weather.html:80
+msgid "The Weather Condition in "
+msgstr "Die Wetterlage in"
+
+#: .\weather\templates\weather\weather.html:84
+msgid "City: "
+msgstr "Stadt:"
+
+#: .\weather\templates\weather\weather.html:86
+msgid "Temperature: "
+msgstr "Temperatur:"
+
+#: .\weather\templates\weather\weather.html:86
+msgid "Minimum: "
+msgstr "Minimum: "
+
+#: .\weather\templates\weather\weather.html:86
+msgid "Maximum: "
+msgstr "Maximal:"
+
+#: .\weather\templates\weather\weather.html:88
+msgid " Humidity: "
+msgstr "Feuchtigkeit:"
+
+#: .\weather\templates\weather\weather.html:89
+msgid "Pressure: "
+msgstr "Druck:"
+
+#: .\weather\templates\weather\weather.html:90
+msgid "Wind Speed and Direction: "
+msgstr "Windgeschwindigkeit und -richtung:"
+
+#: .\weather\templates\weather\weather.html:90
+msgid "From: "
+msgstr "Aus:"
+
+#: .\weather\templates\weather\weather.html:92
+#: .\weather\templates\weather\weather.html:94
+#: .\weather\templates\weather\weather.html:96
+#: .\weather\templates\weather\weather.html:98
+msgid "To: "
+msgstr "Zu:"
+
+#: .\weather\templates\weather\weather.html:101
+msgid "Description: "
+msgstr "Beschreibung:"
+
+#: .\weather\templates\weather\weather.html:108
+#| msgid "Configure Caching"
+msgid "Configure cache timeout"
+msgstr "Konfigurieren Sie das Cache-Timeout"
+
+#~ msgid "Have a good day"
+#~ msgstr "Haben Sie einen guten Tag"
+
+#~ msgid "10 minutes"
+#~ msgstr "10 Minuten"
+
+#~ msgid "60 minutes"
+#~ msgstr "60 Minuten"

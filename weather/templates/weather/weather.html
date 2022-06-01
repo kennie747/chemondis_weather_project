@@ -1,4 +1,23 @@
 {% load mathfilters %}
+{% load i18n %}
+<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <select name="language">
+       {% get_current_language as LANGUAGE_CODE %}
+       {% get_available_languages as LANGUAGES %}
+       {% get_language_info_list for LANGUAGES as languages %}
+       {% for language in languages %}
+         <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+             {{ language.name_local }} ({{ language.code }})
+         </option>
+       {% endfor %}
+    </select>
+    <input type="submit" value="{% trans "Go"  %}">
+</form>
+
+<p style="color:rgb(255, 0, 225); font-size: 16px; ">{% trans "Hi Guest, you're welcome to our site" %} :)</p>
+<p style="color:rgb(255, 94, 0); font-size: 16px; ">{% trans "Please enjoy the rest of your day" %}</p>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,64 +37,16 @@
             margin: 0 0 5px -5px;
             font-size: 18px;
         }
-
-                    body {
-            font-family: "Open Sans";
-            background-color: #ffffff;
-            }
-
-            .modern-form {
+        .modern-form {
             width: 500px;
             margin: 30px auto;
             background-color:  #fff;
             border: solid 1px #ccc;
             padding: 20px 10px;
-            }
-
-            .modern-form h3 {
-            text-align: center;
-            }
-
-            .float-label-field {
-            border: none;
-            outline: none;
-            position: relative;
-            margin: 0 0 20px 0;
-            padding: 0;
-            box-sizing: border-box;
-            }
-
-            .float-label-field input {
-            border: none;
-            outline: none;
-            padding: 5px 5px 8px 0px;
-            width: 100%;
-            font-size: 18px;
-            border-bottom: solid 1px #efefef;
-            }
-
-            .float-label-field label {
-            opacity: 0.5;
-            position: absolute;
-            top: 10px;
-            left: 0px;
-            transition: all 0.2s ease;
-            font-size: 18px;
-            }
-
-            .float-label-field.focus label {
-            color: orange;
-            }
-            .float-label-field.focus input {
-            border-bottom: solid 1px orange;
-            }
-            .float-label-field.float label {
-            opacity: 1;
-            top: -8px;
-            font-size: 60%;
-            transition: all 0.2s ease;
-            font-weight: bold;
-            }
+        }
+        .combo{
+            padding:10px;
+        }
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,47 +57,55 @@
 <body>
  <div class="content">
   <div>
-    <div style="color:blue"> <center> <p><h1>Weather Finder</h1></p></center></div>
-      <form action="/weather/search" method="POST" class="modern-form">
-        {% csrf_token %} <!-- To handle the Cross Site Request Forgery issue -->
+    <div style="color:blue"> <center> <p><h1>{% trans "Weather Finder" %} </h1></p></center></div>
+      <form action="/weather/search" method="POST" class="modern-form"> {% csrf_token %} <!-- To handle the Cross Site Request Forgery issue -->
         <!-- <label for="title">Movie Title: </label> -->
-        <center><input type="text" name="city" id="city" placeholder="Please Enter a City to Get the Weather Condition" class="wrap"></center><!-- value="City Name" -->
+        <center><input type="text" name="city" id="city" placeholder="{% trans "Please Enter a City to Get the Weather Condition" %}" class="wrap"></center><!-- value="City Name" -->
        
-        <center><input type="submit" value="Search Weather" class="wrap"></center>
-       
+        <center><input type="submit" value="{% trans "Search Weather" %}" class="wrap"></center>
+
+        <!-- <label for="cache_duration">Cache Duration:</label>
+        <select id="cache_duration" name="cache_duration" class="combo">
+            <option value=300>5 minutes</option>
+            <option value=600>10 minutes</option>
+            <option value=3600>60 minutes</option>
+        </select> -->
       </form>
   </div>
-
+  
   {% if weather %}
   {% if weather.cod == '404'%}
-  <div><p><h3 style="color:red">Please double check your input value </h3></p> <p>The city '{{input}}' was not found</p></div> <!-- {{weather.message}}-->
+  <div><p><h3 style="color:red">{% trans "Please double check your input value" %} </h3></p> <p>{% trans "The city" %} '{{input}}' {% trans "was not found" %}</p></div> <!-- {{weather.message}}-->
   {% else %}
-  <div > <p><h3 style="color:black">The Weather Condition in {{weather.name}}</h3></p></div>
+  <div > <p><h3 style="color:black">{% trans "The Weather Condition in " %} {{weather.name}}</h3></p></div>
     
   <div>
     <ul>
-        <li><p> <strong>City:</strong> {{weather.name}}, {{weather.sys.country}}</p></li>
+        <li><p> <strong>{% trans "City: " %}</strong> {{weather.name}}, {{weather.sys.country}}</p></li>
         <!-- <li><p><strong>Latitude and Longitude:</strong> {{weather.coord.lat}}, {{weather.coord.lon}} </p></li> -->
-        <li><p><strong>Temperature:</strong> {{weather.main.temp}} <em>kelvin</em> (Minimum: {{weather.main.temp_min}}, Maximum: {{weather.main.temp_max}})
+        <li><p><strong>{% trans "Temperature: " %}</strong> {{weather.main.temp}} <em>kelvin</em> ( {% trans "Minimum: "%} {{weather.main.temp_min}}, {% trans "Maximum: "%} {{weather.main.temp_max}})
         </p></li>
-        <li> <p><strong> Humidity: </strong> {{weather.main.humidity}} <em>g/m<sup>3</sup></em></p></li>
-        <li> <p><strong>Pressure:</strong>  {{weather.main.pressure}} <em>Pa</em></p></li>
-        <li> <p><strong>Wind Speed and Direction: </strong> {{weather.wind.speed}} <em>m/s</em>, From:  
+        <li> <p><strong>{% trans " Humidity: " %} </strong> {{weather.main.humidity}} <em>g/m<sup>3</sup></em></p></li>
+        <li> <p><strong>{% trans "Pressure: " %}</strong>  {{weather.main.pressure}} <em>Pa</em></p></li>
+        <li> <p><strong>{% trans "Wind Speed and Direction: " %}" </strong> {{weather.wind.speed}} <em>m/s</em>, {% trans "From: "%}  
              {% if weather.wind.deg >= 270 %}
-             {{weather.wind.deg}}<sup>o</sup> <em>NW</em> To: {{ weather.wind.deg|sub:'180' }}<sup>o</sup> <em>SE</em>
+             {{weather.wind.deg}}<sup>o</sup> <em>NW</em> {% trans "To: "%} {{ weather.wind.deg|sub:'180' }}<sup>o</sup> <em>SE</em>
              {% elif weather.wind.deg > 180 %}
-             {{weather.wind.deg}}<sup>o</sup><em>SW</em> To: {{ weather.wind.deg|sub:'180' }}<sup>o</sup><em>NE</em>
+             {{weather.wind.deg}}<sup>o</sup><em>SW</em> {% trans "To: "%} {{ weather.wind.deg|sub:'180' }}<sup>o</sup><em>NE</em>
              {% elif weather.wind.deg > 90 %}
-             {{weather.wind.deg}}<sup>o</sup> SE To: {{ '180'|sub:weather.wind.deg }}<sup>o</sup> NW
+             {{weather.wind.deg}}<sup>o</sup> SE {% trans "To: "%} {{ '180'|sub:weather.wind.deg }}<sup>o</sup> NW
              {% elif weather.wind.deg > 0 %}
-             {{weather.wind.deg}}<sup>o</sup> NE To: {{ '180'|sub:weather.wind.deg }}<sup>o</sup> SW
+             {{weather.wind.deg}}<sup>o</sup> NE {% trans "To: "%} {{ '180'|sub:weather.wind.deg }}<sup>o</sup> SW
              {% endif %}
              </p> </li>
-        <li><p><strong>Description: </strong> {{weather.weather.0.description}} </p></li>
+        <li><p><strong>{% trans "Description: " %}</strong> {{weather.weather.0.description}} </p></li>
     </ul>
   </div>
   {% endif %}
   {% endif %}
+  <br>
+  <br>
+  <a href='/config'>{% trans "Configure cache timeout" %}</a>
  </div>
 </body>
 
