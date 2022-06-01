@@ -13,14 +13,11 @@
     </select>
     <input type="submit" value="{% trans "Go"  %}">
 </form>
-
 <p style="color:rgb(255, 0, 225); font-size: 16px; ">{% trans "Hi Guest, you're welcome to our site" %} :)</p>
 <p style="color:rgb(255, 94, 0); font-size: 16px; ">{% trans "Please enjoy the rest of your day" %}</p>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <style>
         .content {
@@ -59,17 +56,8 @@
   <div>
     <div style="color:blue"> <center> <p><h1>{% trans "Weather Finder" %} </h1></p></center></div>
       <form action="/weather/search" method="POST" class="modern-form"> {% csrf_token %} <!-- To handle the Cross Site Request Forgery issue -->
-        <!-- <label for="title">Movie Title: </label> -->
-        <center><input type="text" name="city" id="city" placeholder="{% trans "Please Enter a City to Get the Weather Condition" %}" class="wrap"></center><!-- value="City Name" -->
-       
+        <center><input type="text" name="city" id="city" placeholder="{% trans "Please Enter a City to Get the Weather Condition" %}" class="wrap"></center><!-- value="City Name" -->     
         <center><input type="submit" value="{% trans "Search Weather" %}" class="wrap"></center>
-
-        <!-- <label for="cache_duration">Cache Duration:</label>
-        <select id="cache_duration" name="cache_duration" class="combo">
-            <option value=300>5 minutes</option>
-            <option value=600>10 minutes</option>
-            <option value=3600>60 minutes</option>
-        </select> -->
       </form>
   </div>
   
@@ -108,23 +96,4 @@
   <a href='/config'>{% trans "Configure cache timeout" %}</a>
  </div>
 </body>
-
 </html>
-
-
-<!-- 
-{
-"coord":{"lon":-0.1257,"lat":51.5085},
-"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}],
-"base":"stations",
-"main":{"temp":286.21,"feels_like":285.22,"temp_min":284.58,"temp_max":287.21,"pressure":1017,"humidity":63},
-"visibility":10000,
-"wind":{"speed":3.09,"deg":100},
-"clouds":{"all":75},
-"dt":1653850797,
-"sys":{"type":2,"id":2019646,"country":"GB","sunrise":1653796312,"sunset":1653854655},
-"timezone":3600,
-"id":2643743,
-"name":"London",
-"cod":200
-} -->

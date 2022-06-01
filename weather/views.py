@@ -1,3 +1,4 @@
+import json
 from re import A
 from async_timeout import timeout
 from django.http import Http404, HttpResponse, HttpResponseRedirect
@@ -7,8 +8,9 @@ import requests
 from django.core.cache import cache
 from django.http import JsonResponse
 from weather import config
-
-# cache_timeout = 300
+import aiohttp
+import asyncio
+from asgiref.sync import sync_to_async
 
 def save_config(request):
     if request.POST.get('cache_duration'):
@@ -19,37 +21,23 @@ def save_config(request):
 def configuration(request):
     return render(request, 'weather/config.html',{'set_val':int(int(config.cache_timeout)/60)})
 
-def home_cached(request):
-    payload = []
-    db = None
-    if cache.get('city'):
-        payload=cache.get('city')
-        db = 'redis'
-        print(cache.ttl('city'))
-    else:
-        objs = Weather.objects.all()
-        for obj in objs:
-            payload.append(obj.city)
-        db = 'sqlite'
-        cache.set('city', payload, timeout=10)
-    return JsonResponse({'status':200, 'db': db, 'data':payload})
-    # return render(request, 'weather/weather.html')
-
-
-def search(request):
+async def search(request):
     city =  request.POST.get('city') #request.POST['title'] # throws an exception if value does not exist 
-    
     if city:
         if cache.get(city):
-             data = cache.get(city)
-             print('cache')
-        else:
-            data = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff').json()
+            data = cache.get(city)
+            # print('cached')
+        else:    
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff') as res:
+                    data = await res.json()
+                    # data = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff').json()
             cache.set(city, data, timeout = int(config.cache_timeout))
-            print('database')
+            # print('database')
         return render(request, 'weather/weather.html', {'weather':data, 'input':city})
     else:
         return render(request, 'weather/weather.html')
+
 
 def home(request):
     return render(request, 'weather/weather.html')

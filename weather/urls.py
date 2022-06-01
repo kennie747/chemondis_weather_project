@@ -30,7 +30,6 @@ handler403 = 'weather.views.custom_permission_denied_view'
 handler400 = 'weather.views.custom_bad_request_view'
 
 urlpatterns = [
-    path('home_cached/', views.home_cached),
     path('', views.home),
     path('home/', views.home),
     path('admin/', admin.site.urls),
