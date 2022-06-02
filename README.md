@@ -3,10 +3,10 @@ The CheMondis Weather Project for getting the weather situation in any city of i
 
 This is a complete working solution for checking the weather condition in any city.
 
-I had some challenges with the very last component of the requirements, that is, running the program by using docker-compose. So far, docker-compose only works if the cache is bypassed by configuring the timeout to 0. The user can configure the timeout to other values, but the redis server will failto respond, resulting in an error message. The Redis Cache fails to respond to connection requests after containerization and running with docker-compose. So, while the program runs with the docker-compose instruction, an error occurs while trying to perform caching.
+I had some challenges with the very last component of the requirements, that is, running the program by using docker-compose. "docker-compose up" works just fine, but the user should leave the caching time-out at 0 so as to bypas the cache. The Redis Cache fails to respond to connection requests after containerization and running with "docker-compose up". So, while the program runs with the docker-compose instruction, an error occurs while trying to perform caching, hence the need to leave the cache-timeout value at 0 for now, while the issue is being fixed.
 
 While running the application with docker-compose has been plagued with the redis server refusing to respond to requests, 
-the application itself is complete and running fine if executed in the following steps:
+the application itself is complete and running fine with all caching and asyncio working properly if executed in the following steps:
 
 1. Install the redis server by executing the instruction: sudo apt-get install redis-server 
 2. Run the redis server by executing the instruction: sudo service redis-server restart 
@@ -16,10 +16,11 @@ the application itself is complete and running fine if executed in the following
     
  
 ##########################################################################
+
 ALTERNATIVELY:
-Execute the docker-compose up command to run the application
-However as earlier explained, the user should leave the configuration settings of the cache timeout at 0 if running the application this way.
-If the cache timeout setting is changed by the user to some other value, the application does not respond properly as earlier explained.
+Execute the "docker-compose up" command to run the application
+However as earlier explained, the user should leave the configuration settings of the cache timeout at 0.
+If the cache timeout setting is changed by the user to some other value, the application does not respond properly.
 
 
 Kindly bear with me while I work on fixing the issue.
