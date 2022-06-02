@@ -1,1 +1,1 @@
-cache_timeout = 300
+cache_timeout = 0

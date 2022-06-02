@@ -24,16 +24,23 @@ def configuration(request):
 async def search(request):
     city =  request.POST.get('city') #request.POST['title'] # throws an exception if value does not exist 
     if city:
-        if cache.get(city):
-            data = cache.get(city)
-            # print('cached')
-        else:    
-            async with aiohttp.ClientSession() as session:
+        if str(config.cache_timeout)=='0' :
+             async with aiohttp.ClientSession() as session:
                 async with session.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff') as res:
                     data = await res.json()
                     # data = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff').json()
-            cache.set(city, data, timeout = int(config.cache_timeout))
             # print('database')
+        else:
+            if cache.get(city):
+                data = cache.get(city)
+                # print('cached')
+            else:    
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff') as res:
+                        data = await res.json()
+                        # data = requests.get(f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID=5a008aceca448cf6719f172c9ecdeeff').json()
+                cache.set(city, data, timeout = int(config.cache_timeout))
+                # print('database')
         return render(request, 'weather/weather.html', {'weather':data, 'input':city})
     else:
         return render(request, 'weather/weather.html')

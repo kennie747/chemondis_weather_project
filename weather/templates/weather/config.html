@@ -41,7 +41,8 @@
         
         <label for="cache_duration">{% trans 'Caching Duration:' %}</label>
         <select id="cache_duration" name="cache_duration" class="combo">
-            <option value=300 >{% trans 'Select an Option' %}</option>
+            <option value=0 >{% trans 'Select an Option' %}</option>
+            <option value=0 >0 {% trans 'minutes' %}</option>
             <option value=300>5 {% trans 'minutes' %}</option>
             <option value=600 >10 {% trans 'minutes' %}</option>
             <option value=3600>60 {% trans 'minutes' %}</option>
