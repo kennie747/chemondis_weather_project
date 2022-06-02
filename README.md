@@ -10,7 +10,7 @@ the application itself is complete and running fine with all caching and asyncio
 
 1. Install the redis server by executing the instruction: sudo apt-get install redis-server 
 2. Run the redis server by executing the instruction: sudo service redis-server restart 
-3. Navigate to the working directory and run the program by executing the following instructions: 
+3. Navigate to the working directory of the CheMondis_weather_project and run the program by executing the following instructions: 
 
     i. pip install -r requirements.txt
     
@@ -21,11 +21,14 @@ the application itself is complete and running fine with all caching and asyncio
 
 ALTERNATIVELY:
 
-Execute the 
+Navigate to the working directory of the CheMondis_weather_project and run the program by executing the following instructions: 
 
-docker-compose up
+Execute the following commands to build the docker images and run them respectively: 
 
-command to run the application
+    i. docker-compose build
+
+    ii. docker-compose up
+
 However as earlier explained, the user should leave the configuration settings of the cache timeout at 0.
 If the cache timeout setting is changed by the user to some other value, the application does not respond properly for now.
 
