@@ -11,7 +11,9 @@ the application itself is complete and running fine with all caching and asyncio
 1. Install the redis server by executing the instruction: sudo apt-get install redis-server 
 2. Run the redis server by executing the instruction: sudo service redis-server restart 
 3. Navigate to the working directory and run the program by executing the following instructions: 
+
     i. pip install -r requirements.txt
+    
     ii. python manage.py runserver
     
  
