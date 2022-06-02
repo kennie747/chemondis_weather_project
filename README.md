@@ -20,7 +20,11 @@ the application itself is complete and running fine with all caching and asyncio
 ##########################################################################
 
 ALTERNATIVELY:
-Execute the "docker-compose up" command to run the application
+Execute the 
+
+docker-compose up
+
+command to run the application
 However as earlier explained, the user should leave the configuration settings of the cache timeout at 0.
 If the cache timeout setting is changed by the user to some other value, the application does not respond properly.
 
