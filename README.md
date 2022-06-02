@@ -27,7 +27,9 @@ docker-compose up
 
 command to run the application
 However as earlier explained, the user should leave the configuration settings of the cache timeout at 0.
-If the cache timeout setting is changed by the user to some other value, the application does not respond properly.
+If the cache timeout setting is changed by the user to some other value, the application does not respond properly for now.
 
 
 Kindly bear with me while I work on fixing the issue.
+
+Thank you for your understanding.
