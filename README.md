@@ -3,7 +3,7 @@ The CheMondis Weather Project for getting the weather situation in any city of i
 
 This is a complete working solution for checking the weather condition in any city.
 
-I had some challenges with the very last component of the requirements, that is, getting a response from the Redis Cache container after containerizing the respective services through docker-compose. Hence I have not been able to achieve the last requirement of "a working docker-compose setup, so the app can be run with one command"
+I had some challenges with the very last component of the requirements, that is, running the program by using docker-compose. The Redis Cache fails to respond to connection requests after containerization and running with docker-compose. So, while the program runs with the docker-compose instruction, an error occurs while trying to perform caching.
 
 While running the application with docker-compose has been plagued with the redis server refusing to respond to requests, 
 the application itself is complete and running fine if executed in the following steps:
