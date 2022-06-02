@@ -20,6 +20,7 @@ the application itself is complete and running fine with all caching and asyncio
 ##########################################################################
 
 ALTERNATIVELY:
+
 Execute the 
 
 docker-compose up
